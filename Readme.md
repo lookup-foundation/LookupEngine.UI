@@ -6,8 +6,7 @@ A modified fork of [WPF UI](https://github.com/lepoco/wpfui) library, specifical
 
 - Modified window styles and behaviors for better Autodesk software integration.
 - Enhanced ContentDialog control.
-- Modified theme
-- Todo
+- Modified theme switching behavior, adapted for plugins.
 
 ## Requirements
 
