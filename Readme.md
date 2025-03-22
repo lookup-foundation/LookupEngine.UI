@@ -1,0 +1,26 @@
+# LookupEngine.UI
+
+A modified fork of [WPF UI](https://github.com/lepoco/wpfui) library, specifically adapted for use in LookupEngine based projects. This fork maintains the core functionality of the original WPF UI library while introducing specific modifications and optimizations.
+
+## Differences from Original WPF UI
+
+- Modified window styles and behaviors for better Autodesk software integration.
+- Enhanced ContentDialog control.
+- Modified theme
+- Todo
+
+## Requirements
+
+- .NET Framework 4.8
+- .NET 8.0
+- Windows 10/11
+- JetBrains Rider
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Original WPF UI project by [Leszek Pomianowski](https://github.com/lepoco)
+- All contributors to the original WPF UI project
