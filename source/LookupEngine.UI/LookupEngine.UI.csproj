@@ -9,10 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="PolySharp" Version="1.15.0" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <Resource Include="Resources\Fonts\FluentSystemIcons-Filled.ttf"/>
         <Resource Include="Resources\Fonts\FluentSystemIcons-Regular.ttf"/>
     </ItemGroup>

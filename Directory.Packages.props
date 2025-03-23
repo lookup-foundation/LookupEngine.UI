@@ -1,0 +1,15 @@
+﻿<Project>
+
+    <!-- Global NuGet configuration -->
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <CentralPackageFloatingVersionsEnabled>true</CentralPackageFloatingVersionsEnabled>
+        <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+    </PropertyGroup>
+
+    <!-- Development References -->
+    <ItemGroup>
+        <GlobalPackageReference Include="PolySharp" Version="1.15.0"/>
+    </ItemGroup>
+
+</Project>
