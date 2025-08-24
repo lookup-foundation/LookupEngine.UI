@@ -2,6 +2,8 @@
 
 A modified fork of [WPF UI](https://github.com/lepoco/wpfui) library, specifically adapted for use in LookupEngine based projects. This fork maintains the core functionality of the original WPF UI library while introducing specific modifications and optimizations.
 
+WPF.UI version: 7f0dd189266ba6ad548d8acf239c4951529ae418
+
 ## Differences from Original WPF UI
 
 - Modified window styles and behaviors for better Autodesk software integration.
