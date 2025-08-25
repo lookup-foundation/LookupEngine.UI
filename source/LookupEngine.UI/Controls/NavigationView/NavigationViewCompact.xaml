@@ -289,9 +289,7 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
@@ -343,7 +341,7 @@
                             <ContentPresenter
                                 x:Name="AutoSuggestBoxContentPresenter"
                                 Grid.Row="3"
-                                Margin="0,0,0,6"
+                                Margin="0"
                                 Content="{TemplateBinding AutoSuggestBox}" />
 
                             <controls:Button
@@ -355,17 +353,10 @@
                                 Visibility="Collapsed" />
                         </Grid>
 
-                        <!--  Separator/Shadow for Top  -->
-                        <Border
-                            Grid.Row="1"
-                            Height="1"
-                            Margin="0,4,0,4"
-                            Background="{DynamicResource LeftNavigationViewSeparatorBrush}" />
-
                         <!--  Scrollable Menu Items  -->
                         <controls:DynamicScrollViewer
                             x:Name="PART_ScrollViewer"
-                            Grid.Row="2"
+                            Grid.Row="1"
                             Margin="0,0,-4,0"
                             Padding="0,0,4,0"
                             CanContentScroll="True"
@@ -385,15 +376,8 @@
                             </ItemsControl>
                         </controls:DynamicScrollViewer>
 
-                        <!--  Separator/Shadow for Footer  -->
-                        <Border
-                            Grid.Row="3"
-                            Height="1"
-                            Margin="0,4,0,4"
-                            Background="{DynamicResource LeftNavigationViewSeparatorBrush}" />
-
                         <!--  Footer (Fixed)  -->
-                        <Grid Grid.Row="4">
+                        <Grid Grid.Row="2">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />

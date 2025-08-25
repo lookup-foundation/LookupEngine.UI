@@ -297,6 +297,23 @@
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundPressed}" />
+                <Setter TargetName="Icon" Property="TextElement.Foreground" Value="{DynamicResource MenuBarItemTextForegroundPressed}" />
+                <Setter TargetName="Header" Property="TextElement.Foreground" Value="{DynamicResource MenuBarItemTextForegroundPressed}" />
+                <Setter TargetName="InputGesture" Property="TextElement.Foreground" Value="{DynamicResource MenuBarItemTextForegroundPressed}" />
+            </MultiTrigger>
             <Trigger Property="IsHighlighted" Value="True">
                 <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
             </Trigger>
@@ -662,23 +679,6 @@
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="True" />
-                    <Condition Property="IsPressed" Value="False" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="True" />
-                    <Condition Property="IsPressed" Value="True" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundPressed}" />
-                <Setter TargetName="Icon" Property="TextElement.Foreground" Value="{DynamicResource MenuBarItemTextForegroundPressed}" />
-                <Setter TargetName="Header" Property="TextElement.Foreground" Value="{DynamicResource MenuBarItemTextForegroundPressed}" />
-                <Setter TargetName="InputGesture" Property="TextElement.Foreground" Value="{DynamicResource MenuBarItemTextForegroundPressed}" />
-            </MultiTrigger>
             <Trigger Property="IsHighlighted" Value="True">
                 <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
             </Trigger>
@@ -697,7 +697,6 @@
                 <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundPressed}" />
                 <Setter TargetName="Icon" Property="TextElement.Foreground" Value="{DynamicResource MenuBarItemTextForegroundPressed}" />
                 <Setter TargetName="Header" Property="TextElement.Foreground" Value="{DynamicResource MenuBarItemTextForegroundPressed}" />
-                <Setter TargetName="InputGesture" Property="TextElement.Foreground" Value="{DynamicResource MenuBarItemTextForegroundPressed}" />
             </MultiTrigger>
             <Trigger Property="Icon" Value="{x:Null}">
                 <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
