@@ -5,6 +5,7 @@
 
 /* https://docs.microsoft.com/en-us/fluent-ui/web-components/components/progress-ring */
 
+using System.Windows.Controls;
 using Brush = System.Windows.Media.Brush;
 using Brushes = System.Windows.Media.Brushes;
 
@@ -14,7 +15,7 @@ namespace Wpf.Ui.Controls;
 /// <summary>
 /// Rotating loading ring.
 /// </summary>
-public class ProgressRing : System.Windows.Controls.Control
+public class ProgressRing : Control
 {
     /// <summary>Identifies the <see cref="Progress"/> dependency property.</summary>
     public static readonly DependencyProperty ProgressProperty = DependencyProperty.Register(
@@ -64,9 +65,9 @@ public class ProgressRing : System.Windows.Controls.Control
     /// <summary>Identifies the <see cref="CoverRingVisibility"/> dependency property.</summary>
     public static readonly DependencyProperty CoverRingVisibilityProperty = DependencyProperty.Register(
         nameof(CoverRingVisibility),
-        typeof(System.Windows.Visibility),
+        typeof(Visibility),
         typeof(ProgressRing),
-        new PropertyMetadata(System.Windows.Visibility.Visible)
+        new PropertyMetadata(Visibility.Visible)
     );
 
     /// <summary>
@@ -112,15 +113,15 @@ public class ProgressRing : System.Windows.Controls.Control
     public Brush CoverRingStroke
     {
         get => (Brush)GetValue(CoverRingStrokeProperty);
-        internal set => SetValue(CoverRingStrokeProperty, value);
+        set => SetValue(CoverRingStrokeProperty, value);
     }
 
     /// <summary>
     /// Gets background ring visibility.
     /// </summary>
-    public System.Windows.Visibility CoverRingVisibility
+    public Visibility CoverRingVisibility
     {
-        get => (System.Windows.Visibility)GetValue(CoverRingVisibilityProperty);
+        get => (Visibility)GetValue(CoverRingVisibilityProperty);
         internal set => SetValue(CoverRingVisibilityProperty, value);
     }
 
