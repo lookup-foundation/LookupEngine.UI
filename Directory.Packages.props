@@ -10,11 +10,15 @@
     <ItemGroup>
         <!-- Automation Tools -->
         <PackageVersion Include="Nuke.Common" Version="9.0.4"/>
+
+        <!-- System References -->
+        <PackageVersion Include="System.Memory" Version="4.6.3"/>
     </ItemGroup>
 
     <!-- Development References -->
     <ItemGroup>
-        <GlobalPackageReference Include="PolySharp" Version="1.15.0"/>
+        <GlobalPackageReference Include="Polyfill" Version="9.7.3"/>
+        <GlobalPackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.269"/>
     </ItemGroup>
 
 </Project>

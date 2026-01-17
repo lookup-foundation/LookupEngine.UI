@@ -9,7 +9,7 @@
 // ReSharper disable once CheckNamespace
 namespace Wpf.Ui.Controls;
 
-public class NavigationViewBreadcrumbItem : DependencyObject
+internal class NavigationViewBreadcrumbItem : DependencyObject
 {
     public static readonly DependencyProperty ContentProperty = DependencyProperty.Register(
         nameof(Content),

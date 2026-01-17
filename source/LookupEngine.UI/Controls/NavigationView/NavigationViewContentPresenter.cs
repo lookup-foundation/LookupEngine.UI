@@ -89,7 +89,10 @@ public class NavigationViewContentPresenter : Frame
             new FrameworkPropertyMetadata(JournalOwnership.UsesParentJournal)
         );
 
-        if (ScrollViewer.CanContentScrollProperty.GetMetadata(typeof(Page)) == ScrollViewer.CanContentScrollProperty.DefaultMetadata)
+        if (
+            ScrollViewer.CanContentScrollProperty.GetMetadata(typeof(Page))
+            == ScrollViewer.CanContentScrollProperty.DefaultMetadata
+        )
         {
             ScrollViewer.CanContentScrollProperty.OverrideMetadata(
                 typeof(Page),
@@ -214,20 +217,33 @@ public class NavigationViewContentPresenter : Frame
     )]
     private static void NotifyContentAboutNavigating(object content, Func<INavigationAware, Task> function)
     {
-        // The order in which the OnNavigatedToAsync/OnNavigatedFromAsync methods of View and ViewModel are called
-        // is not guaranteed
-        if (content is INavigationAware navigationAwareContent)
+        async void PerformNotify(INavigationAware navigationAware)
         {
-            function(navigationAwareContent);
+            await function(navigationAware).ConfigureAwait(false);
         }
 
-        if (content is INavigableView<object> {ViewModel: INavigationAware navigationAwareViewModel})
+        switch (content)
         {
-            function(navigationAwareViewModel);
-        }
-        else if (content is FrameworkElement {DataContext: INavigationAware viewModel} && !ReferenceEquals(viewModel, content))
-        {
-            function(viewModel);
+            // The order in which the OnNavigatedToAsync/OnNavigatedFromAsync methods of View and ViewModel are called
+            // is not guaranteed
+            case INavigationAware navigationAwareNavigationContent:
+                PerformNotify(navigationAwareNavigationContent);
+                if (
+                    navigationAwareNavigationContent
+                        is FrameworkElement { DataContext: INavigationAware viewModel }
+                    && !ReferenceEquals(viewModel, navigationAwareNavigationContent)
+                )
+                {
+                    PerformNotify(viewModel);
+                }
+
+                break;
+            case INavigableView<object> { ViewModel: INavigationAware navigationAwareNavigableViewViewModel }:
+                PerformNotify(navigationAwareNavigableViewViewModel);
+                break;
+            case FrameworkElement { DataContext: INavigationAware navigationAwareCurrentContent }:
+                PerformNotify(navigationAwareCurrentContent);
+                break;
         }
     }
 }

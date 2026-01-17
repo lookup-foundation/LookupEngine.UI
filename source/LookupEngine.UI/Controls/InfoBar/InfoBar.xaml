@@ -40,7 +40,7 @@
                     <Grid x:Name="InfoBarRoot">
                         <Border
                             x:Name="ContentBorder"
-                            Padding="16,14,16,10"
+                            Padding="16,12"
                             HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalAlignment}"
                             Background="{TemplateBinding Background}"
@@ -53,7 +53,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <Border Margin="0,2,20,0" VerticalAlignment="Top">
+                                <Border Margin="0,2,14,0" VerticalAlignment="Top">
                                     <controls:SymbolIcon
                                         x:Name="SymbolIcon"
                                         VerticalAlignment="Top"
@@ -63,7 +63,7 @@
 
                                 <WrapPanel Grid.Column="1" VerticalAlignment="Top">
                                     <TextBlock
-                                        x:Name="InfoTitle"
+                                        x:Name="TitleText"
                                         Margin="0,0,14,0"
                                         ScrollViewer.CanContentScroll="False"
                                         Text="{TemplateBinding Title}"
@@ -99,10 +99,6 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger SourceName="InfoTitle" Property="Text" Value="">
-                            <Setter TargetName="InfoTitle" Property="Visibility" Value="Collapsed" />
-                        </Trigger>
-                        
                         <Trigger Property="IsClosable" Value="False">
                             <Setter TargetName="CloseButton" Property="Visibility" Value="Collapsed" />
                         </Trigger>
@@ -114,6 +110,14 @@
                             <Setter Property="Visibility" Value="Collapsed" />
                         </Trigger>
 
+                        <!-- Collapse TitleText when Title is null or empty to release layout space -->
+                        <Trigger Property="Title" Value="{x:Null}">
+                            <Setter TargetName="TitleText" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Title" Value="">
+                            <Setter TargetName="TitleText" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+
                         <Trigger Property="Severity" Value="Informational">
                             <Setter TargetName="SymbolIcon" Property="Foreground">
                                 <Setter.Value>
@@ -122,21 +126,25 @@
                             </Setter>
                             <Setter TargetName="SymbolIcon" Property="Symbol" Value="Info24" />
                             <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource InfoBarInformationalSeverityBackgroundBrush}" />
+                            <Setter TargetName="ContentBorder" Property="BorderBrush" Value="{DynamicResource InfoBarInformationalSeverityBorderBrush}" />
                         </Trigger>
                         <Trigger Property="Severity" Value="Success">
                             <Setter TargetName="SymbolIcon" Property="Foreground" Value="{DynamicResource InfoBarSuccessSeverityIconBackground}" />
                             <Setter TargetName="SymbolIcon" Property="Symbol" Value="CheckmarkCircle24" />
                             <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource InfoBarSuccessSeverityBackgroundBrush}" />
+                            <Setter TargetName="ContentBorder" Property="BorderBrush" Value="{DynamicResource InfoBarSuccessSeverityBorderBrush}" />
                         </Trigger>
                         <Trigger Property="Severity" Value="Warning">
                             <Setter TargetName="SymbolIcon" Property="Foreground" Value="{DynamicResource InfoBarWarningSeverityIconBackground}" />
                             <Setter TargetName="SymbolIcon" Property="Symbol" Value="ErrorCircle24" />
                             <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource InfoBarWarningSeverityBackgroundBrush}" />
+                            <Setter TargetName="ContentBorder" Property="BorderBrush" Value="{DynamicResource InfoBarWarningSeverityBorderBrush}" />
                         </Trigger>
                         <Trigger Property="Severity" Value="Error">
                             <Setter TargetName="SymbolIcon" Property="Foreground" Value="{DynamicResource InfoBarErrorSeverityIconBackground}" />
                             <Setter TargetName="SymbolIcon" Property="Symbol" Value="DismissCircle24" />
                             <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource InfoBarErrorSeverityBackgroundBrush}" />
+                            <Setter TargetName="ContentBorder" Property="BorderBrush" Value="{DynamicResource InfoBarErrorSeverityBorderBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

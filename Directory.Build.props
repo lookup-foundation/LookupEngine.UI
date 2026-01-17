@@ -4,8 +4,10 @@
     <PropertyGroup>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
-        <PlatformTarget>x64</PlatformTarget>
         <ImplicitUsings>true</ImplicitUsings>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <EnableWindowsTargeting>true</EnableWindowsTargeting>
+        <NoWarn>$(NoWarn);CS8601;CS8603;CS8618;CA1416</NoWarn>
     </PropertyGroup>
 
 </Project>

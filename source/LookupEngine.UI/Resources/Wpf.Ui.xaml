@@ -33,6 +33,7 @@
         <ResourceDictionary Source="pack://application:,,,/LookupEngine.UI;component/Controls/ColorPicker/ColorPicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/LookupEngine.UI;component/Controls/ComboBox/ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/LookupEngine.UI;component/Controls/ContentDialog/ContentDialog.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/LookupEngine.UI;component/Controls/ContentDialog/ContentDialogHost.xaml" />
         <ResourceDictionary Source="pack://application:,,,/LookupEngine.UI;component/Controls/ContextMenu/ContextMenu.xaml" />
         <ResourceDictionary Source="pack://application:,,,/LookupEngine.UI;component/Controls/ContextMenu/ContextMenuLoader.xaml" />
         <ResourceDictionary Source="pack://application:,,,/LookupEngine.UI;component/Controls/DataGrid/DataGrid.xaml" />

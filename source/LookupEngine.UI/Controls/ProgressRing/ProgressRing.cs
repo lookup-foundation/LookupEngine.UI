@@ -5,7 +5,6 @@
 
 /* https://docs.microsoft.com/en-us/fluent-ui/web-components/components/progress-ring */
 
-using System.Windows.Controls;
 using Brush = System.Windows.Media.Brush;
 using Brushes = System.Windows.Media.Brushes;
 
@@ -15,7 +14,7 @@ namespace Wpf.Ui.Controls;
 /// <summary>
 /// Rotating loading ring.
 /// </summary>
-public class ProgressRing : Control
+public class ProgressRing : System.Windows.Controls.Control
 {
     /// <summary>Identifies the <see cref="Progress"/> dependency property.</summary>
     public static readonly DependencyProperty ProgressProperty = DependencyProperty.Register(
@@ -65,9 +64,9 @@ public class ProgressRing : Control
     /// <summary>Identifies the <see cref="CoverRingVisibility"/> dependency property.</summary>
     public static readonly DependencyProperty CoverRingVisibilityProperty = DependencyProperty.Register(
         nameof(CoverRingVisibility),
-        typeof(Visibility),
+        typeof(System.Windows.Visibility),
         typeof(ProgressRing),
-        new PropertyMetadata(Visibility.Visible)
+        new PropertyMetadata(System.Windows.Visibility.Visible)
     );
 
     /// <summary>
@@ -104,7 +103,7 @@ public class ProgressRing : Control
     public double IndeterminateAngle
     {
         get => (double)GetValue(IndeterminateAngleProperty);
-        internal set => SetValue(IndeterminateAngleProperty, value);
+        set => SetValue(IndeterminateAngleProperty, value);
     }
 
     /// <summary>
@@ -119,10 +118,10 @@ public class ProgressRing : Control
     /// <summary>
     /// Gets background ring visibility.
     /// </summary>
-    public Visibility CoverRingVisibility
+    public System.Windows.Visibility CoverRingVisibility
     {
-        get => (Visibility)GetValue(CoverRingVisibilityProperty);
-        internal set => SetValue(CoverRingVisibilityProperty, value);
+        get => (System.Windows.Visibility)GetValue(CoverRingVisibilityProperty);
+        set => SetValue(CoverRingVisibilityProperty, value);
     }
 
     /// <summary>
