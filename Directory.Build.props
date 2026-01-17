@@ -10,4 +10,11 @@
         <NoWarn>$(NoWarn);CS8601;CS8603;CS8618;CA1416</NoWarn>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'">
+        <IsTrimmable>true</IsTrimmable>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+        <EnableAotAnalyzer>true</EnableAotAnalyzer>
+        <EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
+    </PropertyGroup>
+
 </Project>

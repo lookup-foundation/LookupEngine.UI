@@ -110,7 +110,7 @@
             <Setter.Value>
                 <controls:IconSourceElement>
                     <controls:IconSourceElement.IconSource>
-                        <controls:SymbolIconSource Symbol="Search24" />
+                        <controls:SymbolIconSource Symbol="Search24" FontSize="16"/>
                     </controls:IconSourceElement.IconSource>
                 </controls:IconSourceElement>
             </Setter.Value>

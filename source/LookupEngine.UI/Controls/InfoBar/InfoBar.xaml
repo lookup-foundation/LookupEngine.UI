@@ -40,7 +40,7 @@
                     <Grid x:Name="InfoBarRoot">
                         <Border
                             x:Name="ContentBorder"
-                            Padding="16,12"
+                            Padding="16,14,16,10"
                             HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalAlignment}"
                             Background="{TemplateBinding Background}"
@@ -53,7 +53,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <Border Margin="0,2,14,0" VerticalAlignment="Top">
+                                <Border Margin="0,2,20,0" VerticalAlignment="Top">
                                     <controls:SymbolIcon
                                         x:Name="SymbolIcon"
                                         VerticalAlignment="Top"

@@ -50,7 +50,7 @@
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Icon}"
                             Focusable="False"
-                            TextElement.FontSize="16"
+                            TextElement.FontSize="18"
                             TextElement.Foreground="{DynamicResource NavigationViewItemForeground}" />
                     </Grid>
 
@@ -289,7 +289,6 @@
             <Grid
                 x:Name="PaneGrid"
                 Grid.Column="0"
-                Width="{TemplateBinding OpenPaneLength}"
                 Margin="4,0">
                 <Border x:Name="PaneBorder">
                     <Grid>
@@ -348,20 +347,21 @@
                                 Content="{TemplateBinding PaneHeader}" />
 
                             <!--  Auto Suggest Box  -->
-                            <ContentPresenter
-                                x:Name="AutoSuggestBoxContentPresenter"
+                            <Grid
                                 Grid.Row="3"
-                                Margin="0,0,0,6"
-                                Content="{TemplateBinding AutoSuggestBox}" />
+                                Margin="0,0,0,4">
+                                <ContentPresenter
+                                    x:Name="AutoSuggestBoxContentPresenter"
+                                    Content="{TemplateBinding AutoSuggestBox}"
+                                    Visibility="Collapsed"/>
 
-                            <controls:Button
-                                x:Name="PART_AutoSuggestBoxSymbolButton"
-                                Grid.Row="3"
-                                Margin="0,0,0,6"
-                                AutomationProperties.AutomationId="NavigationAutoSuggestBoxButton"
-                                Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AutoSuggestBox.Icon}"
-                                Style="{StaticResource BasePaneButtonStyle}"
-                                Visibility="Hidden" />
+                                <controls:Button
+                                    x:Name="PART_AutoSuggestBoxSymbolButton"
+                                    AutomationProperties.AutomationId="NavigationAutoSuggestBoxButton"
+                                    Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AutoSuggestBox.Icon}"
+                                    Style="{StaticResource BasePaneButtonStyle}"
+                                    Visibility="Hidden" />
+                            </Grid>
                         </Grid>
 
                         <!--  Separator/Shadow for Top  -->
@@ -484,7 +484,6 @@
                                 AccelerationRatio="0.4"
                                 Storyboard.TargetName="PaneGrid"
                                 Storyboard.TargetProperty="Width"
-                                From="40"
                                 To="{TemplateBinding OpenPaneLength}"
                                 Duration="0:0:.16" />
                             <DoubleAnimation
@@ -516,7 +515,6 @@
                                 AccelerationRatio="0.4"
                                 Storyboard.TargetName="PaneGrid"
                                 Storyboard.TargetProperty="Width"
-                                From="{TemplateBinding OpenPaneLength}"
                                 To="40"
                                 Duration="0:0:.16" />
                             <ObjectAnimationUsingKeyFrames
@@ -532,7 +530,11 @@
         </Grid>
 
         <ControlTemplate.Triggers>
+            <Trigger Property="IsPaneOpen" Value="True">
+                <Setter TargetName="PaneGrid" Property="Width" Value="{Binding OpenPaneLength, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
             <Trigger Property="IsPaneOpen" Value="False">
+                <Setter TargetName="PaneGrid" Property="Width" Value="40" />
                 <Setter TargetName="PART_AutoSuggestBoxSymbolButton" Property="Visibility" Value="Visible" />
                 <Setter TargetName="PART_ToggleButton" Property="Content" Value="{x:Null}" />
             </Trigger>

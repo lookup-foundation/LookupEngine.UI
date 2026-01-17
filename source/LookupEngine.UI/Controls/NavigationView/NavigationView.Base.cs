@@ -9,7 +9,9 @@ using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 // ReSharper disable once CheckNamespace
 namespace Wpf.Ui.Controls;
@@ -17,7 +19,7 @@ namespace Wpf.Ui.Controls;
 /// <summary>
 /// Represents a container that enables navigation of app content. It has a header, a view for the main content, and a menu pane for navigation commands.
 /// </summary>
-public partial class NavigationView : System.Windows.Controls.Control, INavigationView
+public partial class NavigationView : Control, INavigationView
 {
     /// <summary>
     /// Initializes static members of the <see cref="NavigationView"/> class and overrides default property metadata.
@@ -73,7 +75,7 @@ public partial class NavigationView : System.Windows.Controls.Control, INavigati
     private static readonly Thickness AutoSuggestBoxMarginDefault = new(8, 0, 8, 0);
     private static readonly Thickness FrameMarginDefault = new(0, 50, 0, 0);
 
-    protected static void UpdateVisualState(NavigationView navigationView)
+    protected static void UpdateVisualState(NavigationView navigationView, bool useTransitions = true)
     {
         // Skip display modes that don't have multiple states
         if (
@@ -89,7 +91,7 @@ public partial class NavigationView : System.Windows.Controls.Control, INavigati
         _ = VisualStateManager.GoToState(
             navigationView,
             navigationView.IsPaneOpen ? "PaneOpen" : "PaneCompact",
-            true
+            useTransitions
         );
     }
 
@@ -112,7 +114,6 @@ public partial class NavigationView : System.Windows.Controls.Control, INavigati
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         // TODO: Refresh
-        UpdateVisualState((NavigationView)sender);
     }
 
     /// <summary>
@@ -205,7 +206,7 @@ public partial class NavigationView : System.Windows.Controls.Control, INavigati
         // Should not call .Focus() immediately.
         _ = Dispatcher.BeginInvoke(
             () => AutoSuggestBox?.Focus(),
-            System.Windows.Threading.DispatcherPriority.Input
+            DispatcherPriority.Input
         );
     }
 

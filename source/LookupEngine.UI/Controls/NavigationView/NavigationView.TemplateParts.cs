@@ -7,6 +7,9 @@
 // Copyright(c) Microsoft Corporation.All rights reserved.
 
 // ReSharper disable once CheckNamespace
+
+using System.Windows.Controls;
+
 namespace Wpf.Ui.Controls;
 
 /// <content>
@@ -18,11 +21,11 @@ namespace Wpf.Ui.Controls;
 )]
 [TemplatePart(
     Name = TemplateElementMenuItemsItemsControl,
-    Type = typeof(System.Windows.Controls.ItemsControl)
+    Type = typeof(ItemsControl)
 )]
 [TemplatePart(
     Name = TemplateElementFooterMenuItemsItemsControl,
-    Type = typeof(System.Windows.Controls.ItemsControl)
+    Type = typeof(ItemsControl)
 )]
 [TemplatePart(Name = TemplateElementBackButton, Type = typeof(System.Windows.Controls.Button))]
 [TemplatePart(Name = TemplateElementToggleButton, Type = typeof(System.Windows.Controls.Button))]
@@ -71,12 +74,12 @@ public partial class NavigationView
     /// <summary>
     /// Gets or sets the control located at the top of the pane with left arrow icon.
     /// </summary>
-    protected System.Windows.Controls.ItemsControl MenuItemsItemsControl { get; set; } = null!;
+    protected ItemsControl MenuItemsItemsControl { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the control located at the top of the pane with hamburger icon.
     /// </summary>
-    protected System.Windows.Controls.ItemsControl FooterMenuItemsItemsControl { get; set; } = null!;
+    protected ItemsControl FooterMenuItemsItemsControl { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the control located at the top of the pane with left arrow icon.
@@ -98,22 +101,24 @@ public partial class NavigationView
     {
         base.OnApplyTemplate();
 
+        UpdateVisualState(this, false);
+
         NavigationViewContentPresenter = GetTemplateChild<NavigationViewContentPresenter>(
             TemplateElementNavigationViewContentPresenter
         );
-        MenuItemsItemsControl = GetTemplateChild<System.Windows.Controls.ItemsControl>(
+        MenuItemsItemsControl = GetTemplateChild<ItemsControl>(
             TemplateElementMenuItemsItemsControl
         );
-        FooterMenuItemsItemsControl = GetTemplateChild<System.Windows.Controls.ItemsControl>(
+        FooterMenuItemsItemsControl = GetTemplateChild<ItemsControl>(
             TemplateElementFooterMenuItemsItemsControl
         );
 
         MenuItemsItemsControl.SetCurrentValue(
-            System.Windows.Controls.ItemsControl.ItemsSourceProperty,
+            ItemsControl.ItemsSourceProperty,
             MenuItems
         );
         FooterMenuItemsItemsControl.SetCurrentValue(
-            System.Windows.Controls.ItemsControl.ItemsSourceProperty,
+            ItemsControl.ItemsSourceProperty,
             FooterMenuItems
         );
 
