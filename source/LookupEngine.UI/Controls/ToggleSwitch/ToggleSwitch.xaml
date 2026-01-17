@@ -275,31 +275,31 @@
                             <Setter TargetName="ActiveToggleEllipse" Property="Width" Value="14" />
                         </Trigger>
 
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsPressed" Value="True" />
-                                <Condition Property="IsChecked" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="ToggleEllipse" Property="Width" Value="17" />
-                            <Setter TargetName="ToggleEllipse" Property="RenderTransform">
-                                <Setter.Value>
-                                    <TranslateTransform X="-7.5" />
-                                </Setter.Value>
-                            </Setter>
-                        </MultiTrigger>
-
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsPressed" Value="True" />
-                                <Condition Property="IsChecked" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="ActiveToggleEllipse" Property="Width" Value="17" />
-                            <Setter TargetName="ActiveToggleEllipse" Property="RenderTransform">
-                                <Setter.Value>
-                                    <TranslateTransform X="7.5" />
-                                </Setter.Value>
-                            </Setter>
-                        </MultiTrigger>
+                        <!-- <MultiTrigger> -->
+                        <!--     <MultiTrigger.Conditions> -->
+                        <!--         <Condition Property="IsPressed" Value="True" /> -->
+                        <!--         <Condition Property="IsChecked" Value="False" /> -->
+                        <!--     </MultiTrigger.Conditions> -->
+                        <!--     <Setter TargetName="ToggleEllipse" Property="Width" Value="17" /> -->
+                        <!--     <Setter TargetName="ToggleEllipse" Property="RenderTransform"> -->
+                        <!--         <Setter.Value> -->
+                        <!--             <TranslateTransform X="-7.5" /> -->
+                        <!--         </Setter.Value> -->
+                        <!--     </Setter> -->
+                        <!-- </MultiTrigger> -->
+                        <!-- -->
+                        <!-- <MultiTrigger> -->
+                        <!--     <MultiTrigger.Conditions> -->
+                        <!--         <Condition Property="IsPressed" Value="True" /> -->
+                        <!--         <Condition Property="IsChecked" Value="True" /> -->
+                        <!--     </MultiTrigger.Conditions> -->
+                        <!--     <Setter TargetName="ActiveToggleEllipse" Property="Width" Value="17" /> -->
+                        <!--     <Setter TargetName="ActiveToggleEllipse" Property="RenderTransform"> -->
+                        <!--         <Setter.Value> -->
+                        <!--             <TranslateTransform X="7.5" /> -->
+                        <!--         </Setter.Value> -->
+                        <!--     </Setter> -->
+                        <!-- </MultiTrigger> -->
 
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

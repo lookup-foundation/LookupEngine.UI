@@ -52,6 +52,8 @@ public static class ContentDialogServiceExtensions
             PrimaryButtonText = options.PrimaryButtonText,
             SecondaryButtonText = options.SecondaryButtonText,
             DefaultButton = options.DefaultButton,
+            HorizontalContentAlignment = HorizontalAlignment.Center,
+            VerticalContentAlignment = VerticalAlignment.Center
         };
 
         return dialogService.ShowAsync(dialog, cancellationToken);

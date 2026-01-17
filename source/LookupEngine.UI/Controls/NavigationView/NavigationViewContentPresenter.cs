@@ -5,6 +5,7 @@
 
 /* Based on Windows UI Library */
 
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
@@ -210,40 +211,27 @@ public class NavigationViewContentPresenter : Frame
         NotifyContentAboutNavigating(content, navigationAware => navigationAware.OnNavigatedFromAsync());
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+    [SuppressMessage(
         "ReSharper",
         "SuspiciousTypeConversion.Global",
         Justification = "The library user might make a class inherit from both FrameworkElement and INavigationAware at the same time."
     )]
     private static void NotifyContentAboutNavigating(object content, Func<INavigationAware, Task> function)
     {
-        async void PerformNotify(INavigationAware navigationAware)
+        // The order in which the OnNavigatedToAsync/OnNavigatedFromAsync methods of View and ViewModel are called
+        // is not guaranteed
+        if (content is INavigationAware navigationAwareContent)
         {
-            await function(navigationAware).ConfigureAwait(false);
+            function(navigationAwareContent);
         }
 
-        switch (content)
+        if (content is INavigableView<object> {ViewModel: INavigationAware navigationAwareViewModel})
         {
-            // The order in which the OnNavigatedToAsync/OnNavigatedFromAsync methods of View and ViewModel are called
-            // is not guaranteed
-            case INavigationAware navigationAwareNavigationContent:
-                PerformNotify(navigationAwareNavigationContent);
-                if (
-                    navigationAwareNavigationContent
-                        is FrameworkElement { DataContext: INavigationAware viewModel }
-                    && !ReferenceEquals(viewModel, navigationAwareNavigationContent)
-                )
-                {
-                    PerformNotify(viewModel);
-                }
-
-                break;
-            case INavigableView<object> { ViewModel: INavigationAware navigationAwareNavigableViewViewModel }:
-                PerformNotify(navigationAwareNavigableViewViewModel);
-                break;
-            case FrameworkElement { DataContext: INavigationAware navigationAwareCurrentContent }:
-                PerformNotify(navigationAwareCurrentContent);
-                break;
+            function(navigationAwareViewModel);
+        }
+        else if (content is FrameworkElement {DataContext: INavigationAware viewModel} && !ReferenceEquals(viewModel, content))
+        {
+            function(viewModel);
         }
     }
 }

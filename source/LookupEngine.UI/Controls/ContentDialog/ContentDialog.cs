@@ -3,10 +3,13 @@
 // Copyright (C) Leszek Pomianowski and WPF UI Contributors.
 // All Rights Reserved.
 
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using Wpf.Ui.AutomationPeers;
+using Wpf.Ui.Designer;
 using Wpf.Ui.Input;
+using Wpf.Ui.Win32;
 
 // ReSharper disable once CheckNamespace
 namespace Wpf.Ui.Controls;
@@ -151,6 +154,14 @@ public partial class ContentDialog : ContentControl
     /// <summary>Identifies the <see cref="IsPrimaryButtonEnabled"/> dependency property.</summary>
     public static readonly DependencyProperty IsPrimaryButtonEnabledProperty = DependencyProperty.Register(
         nameof(IsPrimaryButtonEnabled),
+        typeof(bool),
+        typeof(ContentDialog),
+        new PropertyMetadata(true)
+    );
+    
+    /// <summary>Identifies the <see cref="IsPrimaryButtonAvailable"/> dependency property.</summary>
+    public static readonly DependencyProperty IsPrimaryButtonAvailableProperty = DependencyProperty.Register(
+        nameof(IsPrimaryButtonAvailable),
         typeof(bool),
         typeof(ContentDialog),
         new PropertyMetadata(true)
@@ -381,6 +392,16 @@ public partial class ContentDialog : ContentControl
         get => (bool)GetValue(IsPrimaryButtonEnabledProperty);
         set => SetValue(IsPrimaryButtonEnabledProperty, value);
     }
+    
+    /// <summary>
+    /// Gets or sets a value indicating whether the <see cref="ContentDialog"/> primary button is available.
+    /// </summary>
+    public bool IsPrimaryButtonAvailable
+    {
+        get => (bool)GetValue(IsPrimaryButtonAvailableProperty);
+        set => SetValue(IsPrimaryButtonAvailableProperty, value);
+    }
+
 
     /// <summary>
     /// Gets or sets a value indicating whether the <see cref="ContentDialog"/> secondary button is enabled.
@@ -549,7 +570,7 @@ public partial class ContentDialog : ContentControl
             }
 
             // fallback: Win32 foreground window -> HwndSource -> Window
-            activeWindow ??= Win32.Utilities.TryGetWindowFromForegroundHwnd();
+            activeWindow ??= Utilities.TryGetWindowFromForegroundHwnd();
 
             var hostEx = ContentDialogHost.GetForWindow(activeWindow);
             if (hostEx is not null)
@@ -589,7 +610,7 @@ public partial class ContentDialog : ContentControl
     {
         // Avoid registering runtime code that triggers designer behavior or throws exceptions
         // at design time (to reduce the possibility of designer crashes/rendering failures).
-        if (!Designer.DesignerHelper.IsInDesignMode)
+        if (!DesignerHelper.IsInDesignMode)
         {
             Loaded += static (sender, _) =>
             {
@@ -706,7 +727,7 @@ public partial class ContentDialog : ContentControl
     /// <summary>
     /// Shows the dialog
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+    [SuppressMessage(
         "WpfAnalyzers.DependencyProperty",
         "WPF0041:Set mutable dependency properties using SetCurrentValue",
         Justification = "SetCurrentValue(ContentProperty, ...) will not work"
@@ -823,29 +844,29 @@ public partial class ContentDialog : ContentControl
         Hide(result);
     }
 
-    protected override Size MeasureOverride(Size availableSize)
-    {
-        // Avoid throwing exceptions when visual child elements cannot be obtained (designer or template not applied).
-        if (VisualChildrenCount == 0)
-        {
-            return base.MeasureOverride(availableSize);
-        }
-
-        var rootElement = (UIElement)GetVisualChild(0)!;
-
-        rootElement.Measure(availableSize);
-        Size desiredSize = rootElement.DesiredSize;
-
-        Size newSize = GetNewDialogSize(desiredSize);
-
-        SetCurrentValue(DialogHeightProperty, newSize.Height);
-        SetCurrentValue(DialogWidthProperty, newSize.Width);
-
-        ResizeWidth(rootElement);
-        ResizeHeight(rootElement);
-
-        return desiredSize;
-    }
+    // protected override Size MeasureOverride(Size availableSize)
+    // {
+    //     // Avoid throwing exceptions when visual child elements cannot be obtained (designer or template not applied).
+    //     if (VisualChildrenCount == 0)
+    //     {
+    //         return base.MeasureOverride(availableSize);
+    //     }
+    //
+    //     var rootElement = (UIElement)GetVisualChild(0)!;
+    //
+    //     rootElement.Measure(availableSize);
+    //     Size desiredSize = rootElement.DesiredSize;
+    //
+    //     Size newSize = GetNewDialogSize(desiredSize);
+    //
+    //     SetCurrentValue(DialogHeightProperty, newSize.Height);
+    //     SetCurrentValue(DialogWidthProperty, newSize.Width);
+    //
+    //     ResizeWidth(rootElement);
+    //     ResizeHeight(rootElement);
+    //
+    //     return desiredSize;
+    // }
 
     protected override AutomationPeer OnCreateAutomationPeer()
     {

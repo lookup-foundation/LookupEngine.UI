@@ -10,7 +10,7 @@
     <CornerRadius x:Key="DialogOverlayCornerRadius">8,8,0,0</CornerRadius>
     <CornerRadius x:Key="DialogFooterCornerRadius">0,0,8,8</CornerRadius>
 
-    <Style TargetType="{x:Type controls:ContentDialog}">
+    <Style x:Key="DefaultContentDialogStyle" TargetType="{x:Type controls:ContentDialog}">
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
@@ -38,14 +38,15 @@
                 <ControlTemplate TargetType="{x:Type controls:ContentDialog}">
                     <Grid
                         x:Name="DialogRootGrid"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
 
                         <Border
-                            MaxWidth="{TemplateBinding DialogWidth}"
-                            MaxHeight="{TemplateBinding DialogHeight}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            MaxWidth="{TemplateBinding DialogMaxWidth}"
+                            MaxHeight="{TemplateBinding DialogMaxHeight}"
                             Margin="{TemplateBinding DialogMargin}"
-                            VerticalAlignment="Center"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
@@ -100,8 +101,6 @@
                                         IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
                                         VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
                                         <ContentPresenter
-                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             Content="{TemplateBinding Content}"
                                             ContentTemplate="{TemplateBinding ContentTemplate}"
                                             ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}">
@@ -146,7 +145,7 @@
                                             Content="{TemplateBinding PrimaryButtonText}"
                                             Icon="{TemplateBinding PrimaryButtonIcon}"
                                             IsDefault="{TemplateBinding DefaultButton, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static controls:ContentDialogButton.Primary}}"
-                                            IsEnabled="{TemplateBinding IsPrimaryButtonEnabled}"
+                                            IsEnabled="{TemplateBinding IsPrimaryButtonAvailable}"
                                             Visibility="{TemplateBinding IsPrimaryButtonEnabled, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                                         <controls:Button
@@ -235,5 +234,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="{x:Type controls:ContentDialog}" />
 
 </ResourceDictionary>
