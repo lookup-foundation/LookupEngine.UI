@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <!-- Automation Tools -->
-        <PackageVersion Include="Nuke.Common" Version="9.0.4"/>
+        <PackageVersion Include="Nuke.Common" Version="10.1.0"/>
 
         <!-- System References -->
         <PackageVersion Include="System.Memory" Version="4.6.3"/>
