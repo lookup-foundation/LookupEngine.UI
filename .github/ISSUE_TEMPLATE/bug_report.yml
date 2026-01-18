@@ -9,7 +9,7 @@ body:
       value: Please make sure to [search for existing issues](https://github.com/LookupEngine/LookupEngine.UI/issues?q=) before filing a new one!
   - type: input
     attributes:
-      label: LookupEngine version
+      label: LookupEngine.UI version
       placeholder: 1.0.0
     validations:
       required: true
@@ -17,7 +17,7 @@ body:
   - type: textarea
     attributes:
       label: Steps to reproduce
-      description: We highly suggest including screenshots and a bug report log (%LocalAppData%\Autodesk\Revit\Autodesk Revit {version}\Journals)
+      description: We highly suggest including screenshots
       placeholder: |
         1. Open Playground application
         2. Navigate to the Basic inputs page
