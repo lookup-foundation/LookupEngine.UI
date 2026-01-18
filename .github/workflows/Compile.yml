@@ -1,4 +1,4 @@
-name: Compile
+name: Compile solution
 
 on:
   push:
@@ -7,18 +7,26 @@ on:
   pull_request:
 
 jobs:
-  compile:
-    name: Compile
-    runs-on: windows-2022
+  windows:
+    name: windows-2025
+    runs-on: windows-2025
     steps:
+
       - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache packages
-        uses: actions/cache@v4
+        uses: actions/checkout@v6
         with:
-          path: |
-            .nuke/temp
-            ~/.nuget/packages
-          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
+          fetch-depth: 0
+
+      - name: Cache packages
+        uses: actions/cache@v5
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', 'Directory.Build.props', 'Directory.Packages.props') }}
+          restore-keys: ${{ runner.os }}-nuget-
+
       - name: Compile solution
-        run: ./.nuke/build.cmd Compile
+        run: dotnet run -c Release
+        working-directory: "build"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOTNET_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'Production' || 'Development' }}

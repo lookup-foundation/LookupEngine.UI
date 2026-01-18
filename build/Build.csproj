@@ -1,23 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <Nullable>disable</Nullable>
-        <NoWarn>CS0649;CS0169</NoWarn>
-        <TargetFramework>net9.0</TargetFramework>
-        <NukeRootDirectory>..</NukeRootDirectory>
-        <NukeScriptDirectory>..</NukeScriptDirectory>
-        <NukeTelemetryVersion>1</NukeTelemetryVersion>
+        <TargetFramework>net10.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Nuke.Common"/>
+        <PackageReference Include="Sourcy.DotNet"/>
+        <PackageReference Include="Shouldly"/>
+        <PackageReference Include="ModularPipelines"/>
+        <PackageReference Include="ModularPipelines.Git"/>
+        <PackageReference Include="ModularPipelines.GitHub"/>
+        <PackageReference Include="ModularPipelines.DotNet"/>
+        <PackageReference Include="JetBrains.Annotations"/>
+        <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Using Include="Nuke.Common"/>
-        <Using Include="Nuke.Common.IO"/>
-        <Using Include="Serilog"/>
+        <None Update="appsettings.json" CopyToOutputDirectory="PreserveNewest"/>
     </ItemGroup>
 
 </Project>

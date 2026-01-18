@@ -1,0 +1,26 @@
+﻿using ModularPipelines.Attributes;
+using ModularPipelines.Context;
+using ModularPipelines.DotNet.Extensions;
+using ModularPipelines.DotNet.Options;
+using ModularPipelines.Models;
+using ModularPipelines.Modules;
+using Sourcy.DotNet;
+
+namespace Build.Modules;
+
+/// <summary>
+///     Compile the project.
+/// </summary>
+[ModuleCategory("compile")]
+[DependsOn<CleanProjectModule>(Optional = true)]
+public sealed class CompileProjectModule : Module<CommandResult>
+{
+    protected override async Task<CommandResult?> ExecuteAsync(IModuleContext context, CancellationToken cancellationToken)
+    {
+        return await context.DotNet().Build(new DotNetBuildOptions
+        {
+            ProjectSolution = Projects.LookupEngine_UI.FullName,
+            Configuration = "Release"
+        }, cancellationToken: cancellationToken);
+    }
+}

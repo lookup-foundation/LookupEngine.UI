@@ -3,13 +3,22 @@
     <!-- Global NuGet configuration -->
     <PropertyGroup>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-        <CentralPackageFloatingVersionsEnabled>true</CentralPackageFloatingVersionsEnabled>
+        <CentralPackageFloatingVersionsEnabled>false</CentralPackageFloatingVersionsEnabled>
         <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
     </PropertyGroup>
 
     <ItemGroup>
-        <!-- Automation Tools -->
-        <PackageVersion Include="Nuke.Common" Version="9.0.4"/>
+        <!-- Build Automation -->
+        <PackageVersion Include="Shouldly" Version="4.3.0"/>
+        <PackageVersion Include="Sourcy.DotNet" Version="1.0.3"/>
+        <PackageVersion Include="ModularPipelines" Version="3.0.86"/>
+        <PackageVersion Include="ModularPipelines.Git" Version="3.0.86"/>
+        <PackageVersion Include="ModularPipelines.GitHub" Version="3.0.86"/>
+        <PackageVersion Include="ModularPipelines.DotNet" Version="3.0.86"/>
+        <PackageVersion Include="Microsoft.Extensions.Options.DataAnnotations" Version="10.0.2"/>
+
+        <!-- Development Tools -->
+        <PackageVersion Include="JetBrains.Annotations" Version="2025.2.4"/>
 
         <!-- System References -->
         <PackageVersion Include="System.Memory" Version="4.6.3"/>

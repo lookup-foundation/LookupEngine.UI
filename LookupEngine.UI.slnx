@@ -1,8 +1,9 @@
 ﻿<Solution>
     <Folder Name="/Solution Items/">
+        <File Path="Directory.Packages.props" />
+        <File Path="global.json" />
         <File Path="Readme.md" />
         <File Path="Changelog.md" />
-        <File Path="Build\Build.Configuration.cs" />
         <File Path="Directory.Build.props" />
     </Folder>
     <Folder Name="/Automation/">
