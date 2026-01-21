@@ -12,7 +12,6 @@ namespace Build.Modules;
 /// <summary>
 ///     Resolve semantic versions for compiling and publishing the templates.
 /// </summary>
-[ModuleCategory("publish")]
 public sealed class ResolveBuildVersionModule(IOptions<PublishOptions> publishOptions) : Module<ResolveVersioningResult>
 {
     protected override async Task<ResolveVersioningResult?> ExecuteAsync(IModuleContext context, CancellationToken cancellationToken)

@@ -8,7 +8,6 @@ namespace Build.Modules;
 /// <summary>
 ///     Generate and format the changelog for publishing on the GitHub.
 /// </summary>
-[ModuleCategory("publish")]
 [DependsOn<GenerateChangelogModule>]
 [DependsOn<ResolveBuildVersionModule>]
 public sealed class GenerateGitHubChangelogModule : Module<string>

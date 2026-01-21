@@ -13,7 +13,7 @@ namespace Build.Modules;
 ///     Publish the templates to GitHub.
 /// </summary>
 [SkipIfNoGitHubToken]
-[ModuleCategory("publish")]
+[DependsOn<CompileProjectModule>]
 [DependsOn<ResolveBuildVersionModule>]
 [DependsOn<GenerateGitHubChangelogModule>]
 public sealed class PublishGithubModule : Module<Release?>

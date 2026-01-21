@@ -13,7 +13,6 @@ namespace Build.Modules;
 /// <summary>
 ///     Generate the changelog for publishing the templates.
 /// </summary>
-[ModuleCategory("publish")]
 [DependsOn<ResolveBuildVersionModule>]
 public sealed class GenerateChangelogModule(IOptions<PublishOptions> publishOptions) : Module<string>
 {
