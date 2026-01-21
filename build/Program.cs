@@ -13,10 +13,7 @@ builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.AddOptions<PublishOptions>().Bind(builder.Configuration.GetSection("Publish"));
 
-if (args.Contains("compile"))
-{
-    builder.Services.AddModule<CompileProjectModule>();
-}
+builder.Services.AddModule<CompileProjectModule>();
 
 if (args.Contains("publish"))
 {
