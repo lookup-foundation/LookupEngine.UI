@@ -5,7 +5,6 @@ using ModularPipelines.Attributes;
 using ModularPipelines.Context;
 using ModularPipelines.Git.Extensions;
 using ModularPipelines.Modules;
-using Shouldly;
 using File = ModularPipelines.FileSystem.File;
 
 namespace Build.Modules;
@@ -22,7 +21,6 @@ public sealed class GenerateChangelogModule(IOptions<PublishOptions> publishOpti
         var versioning = versioningResult.ValueOrDefault!;
 
         var changelogFile = context.Git().RootDirectory.GetFile(publishOptions.Value.ChangelogFile);
-
         var changelog = await ParseChangelog(changelogFile, versioning.Version);
 
         return changelog.Length > 0 ? changelog.ToString() : string.Empty;
