@@ -68,7 +68,7 @@ public partial class ContentDialog
         }
 
         var window = Window.GetWindow(this);
-        if (e.NewFocus == null || window is not { IsActive: true })
+        if (e.NewFocus == null || e.NewFocus is ContextMenu || window is not { IsActive: true })
         {
             return;
         }
