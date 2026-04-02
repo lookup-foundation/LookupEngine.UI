@@ -16,17 +16,15 @@
         <PackageVersion Include="ModularPipelines.GitHub" Version="3.1.90"/>
         <PackageVersion Include="ModularPipelines.DotNet" Version="3.1.90"/>
 
-        <!-- Development Tools -->
-        <PackageVersion Include="JetBrains.Annotations" Version="2025.2.4"/>
-
-        <!-- System References -->
+        <!-- System Dependencies -->
         <PackageVersion Include="System.Memory" Version="4.6.3"/>
     </ItemGroup>
 
-    <!-- Development References -->
+    <!-- Development Dependencies -->
     <ItemGroup>
         <GlobalPackageReference Include="Polyfill" Version="9.23.0"/>
         <GlobalPackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.269"/>
+        <GlobalPackageReference Include="JetBrains.Annotations.Sources" Version="2025.2.4"/>
     </ItemGroup>
 
 </Project>
