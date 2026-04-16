@@ -23,7 +23,7 @@
     <!-- Development Dependencies -->
     <ItemGroup>
         <GlobalPackageReference Include="Polyfill" Version="10.0.0"/>
-        <GlobalPackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.269"/>
+        <GlobalPackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.275"/>
         <GlobalPackageReference Include="JetBrains.Annotations.Sources" Version="2025.2.4"/>
     </ItemGroup>
 
